@@ -1,5 +1,5 @@
-const boton = document.getElementById('botoFetchPersonajes');
-const div = document.getElementById('personajes');
+const boton = document.getElementById('botonMostrarObras');
+const div = document.getElementById('obras');
 
 /*
 Este código hace lo siguiente:
@@ -10,10 +10,13 @@ Hace solicitudes paralelas para obtener los detalles de cada uno de esos 20 obje
 Una vez que tiene todos los detalles, llama a renderObjetos para mostrar los objetos en la página.
 */ 
 
+//
+const sitioBase = 'https://collectionapi.metmuseum.org/public/collection/v1/';
+
 boton.addEventListener('click', () => {
     console.log('Fetch API');
     //fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects') 
-    fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?hasImages=true') // solicita una lista de IDs de objetos del museo con imagenes hasImages=true
+    fetch(`${sitioBase}objects?hasImages=true`) // solicita una lista de IDs de objetos del museo con imagenes hasImages=true
         .then((response) => response.json()) // respuesta de la API en formato JSON
         .then((data) => {
             const objectIDs = data.objectIDs.slice(0, 40); // obtiene los primeros 20 objetos IDs de la lista
@@ -35,7 +38,7 @@ function renderObjetos(objetos) {
             <h3>ID: ${obj.objectID}</h3>
             <h3>Titulo: ${obj.title}</h3>
             <h4>Cultura: ${obj.culture}</h3>
-            <h4>Disanstía: ${obj.dynasty}</h3>
+            <h4>Dinastía: ${obj.dynasty}</h3>
         `;  //<p>${obj.artistDisplayName}</p>
         div.appendChild(card);
         //} // cierre del if
