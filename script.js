@@ -4,6 +4,28 @@ const div = document.getElementById('obras');
 
 const sitioBase = 'https://collectionapi.metmuseum.org/public/collection/v1/';
 
+llenarSelectDepartamentos();
+
+function llenarSelectDepartamentos() {
+    fetch('https://collectionapi.metmuseum.org/public/collection/v1/departments')
+    .then(response => response.json())
+    .then (data=>{
+        console.log("DataDepartamentos",data);
+        //console.log("DataDepartamentos",data.department);  
+
+        const select = document.getElementById('departamentos');// para obtener el elemento <select> donde se agregarán las opciones
+        data.departments.forEach(departamento => {
+            const option = document.createElement('option');
+            //console.log("optionA: ",option);
+            option.value = departamento.departmentId;
+            option.textContent = departamento.displayName;
+            select.appendChild(option); //Este método agrega la etiqueta <option> recién creada como hijo del elemento <select>
+        }); 
+    })
+
+}
+
+
 boton.addEventListener('click', () => {
     //fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11&hasImages=true')
     //fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11')
@@ -27,7 +49,7 @@ function renderObjetos(objetos) {
         if (obj.primaryImageSmall) { // verifica que el objeto tenga una imagen
             imagenMuseo=obj.primaryImageSmall;
         }else{
-            imagenMuseo='sinImagen.png';
+            imagenMuseo='./Imagenes/sinImage2.jpeg';
         }
         const card = document.createElement('div');
         card.className = 'card';
