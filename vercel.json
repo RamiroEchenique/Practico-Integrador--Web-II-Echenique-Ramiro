@@ -9,5 +9,8 @@
 
       "dest": "/index.js"
     }
-  ]
+  ],
+  "static": {
+    "public": "Public"
+  }
 }
