@@ -1,0 +1,84 @@
+body{
+    background-color: darkgrey;
+    margin: 20px;
+}
+
+.MostrarObras{
+    margin: 20px;
+}
+
+#formulario{
+    width: 70%;
+    margin: 0 auto;
+}
+.grid-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.card {
+    background-color: cornflowerblue;
+    border: 1px solid #fccccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    /*width: 200px;   /* Ancho fijo */
+    /*height: 300px;  /* Alto fijo */ 
+}
+.card img {
+    max-width: 100%;
+    /*width: 100%;*/
+    height: auto;/**/
+    object-fit: cover; /* Ajusta la imagen para cubrir el area de la tarjeta*/
+    border-radius: 8px;
+    
+}
+/*------------- Estilo para la paginacion ---------------- */
+#paginacion {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+#paginacion button {
+    margin-right: 5px;
+}
+
+#paginacion button.active {
+    font-weight: bold;
+    background-color: #ddd;
+}
+/*------------- Estilo para el pie de página ------------- */
+
+footer {
+    background-color: #333333;
+    color: #a7a7a7;
+    text-align: center;
+    font-family: "fuentecuerpo";
+    padding: 5px;
+    border-radius: 10px;
+    margin-top: 25px;
+
+}
+
+footer a {
+    color: #a7a7a7;
+    font-family: "fuentecuerpo";
+    margin: 0 0px;
+}
+
+footer div p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+footer img {
+    width: 18px;
+    vertical-align: middle;
+}
+
+footer p {
+    margin-bottom: 0;
+}
