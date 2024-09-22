@@ -4,7 +4,7 @@ const path       = require('path');
 const app        = express();
 const port       = process.env.PORT || 3000;
 
-app.use(express.static('public/'));
+/*app.use(express.static('public/'));*/
 
 
 
@@ -12,10 +12,10 @@ app.use(express.static('public/'));
     res.send('Hola desde mi servidor express en Google Drive');
 });*/
 
-/*app.use(express.static(__dirname + "/public/"));
+app.use(express.static(__dirname + "/public/"));
 app.get('/', function(request, responce){
     responce.sendFile(path.join(__dirname, 'index.html'));
-})*/
+})
 
 /*app.get('/',   
     (req, res) => {
