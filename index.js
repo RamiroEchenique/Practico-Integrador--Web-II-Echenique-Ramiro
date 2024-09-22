@@ -1,4 +1,4 @@
-/*const express    = require('express');
+const express    = require('express');
 const path       = require('path');
 const app        = express();
 const port       = 3000;
@@ -12,28 +12,13 @@ app.use(express.static('public'));
 /*app.use(express.static(__dirname + "/public/"));
 app.get('/', function(request, responce){
     responce.sendFile(path.join(__dirname, 'index.html'));
-})
+})*/
 
 /*app.get('/',   
     (req, res) => {
      res.sendFile(path.join(__dirname, 'public', 'index.html'));
    });*/
 
-/*app.listen(port, () => {
+app.listen(port, () => {
     console.log(`Servidor express en Google Drive escuchando en el puerto ${port}`);
-});*/
-
-const express = require("express");
-const http = require("node:http");
-const app = express();
-var path = require('path');
-
-app.use(express.static(__dirname + "/public/"));
-app.get('/', function(request, responce){
-    responce.sendFile(path.join(__dirname, 'index.html'));
-})
-
-app.listen(3000, () =>{
-
- console.log("server not found...")
 });
