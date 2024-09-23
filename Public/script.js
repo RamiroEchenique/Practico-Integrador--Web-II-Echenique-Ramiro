@@ -202,6 +202,7 @@ function renderObjetos(objetos) {
     console.log("objetos: ",objetos);
     div.innerHTML = ''; // Limpiar el contenido anterior
     objetos.forEach(obj => {
+        
         let imagenMuseo;
         if (obj.primaryImageSmall) { // verifica que el objeto tenga una imagen
             imagenMuseo=obj.primaryImageSmall;
