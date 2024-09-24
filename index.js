@@ -14,19 +14,26 @@ app.use(express.json());//para leer json
 });*/
 
 // Ruta para  la traducción
-app.get('/traducir/:text', function(request, response) {
-    const textToTranslate = request.params.text;
+app.get('/traducir', function(request, response) {
+    
+    const cultura = request.body.cultura;
+    const titulo = request.body.titulo;
+    const dinastia = request.body.dinastia;
     
     translate({
-        text: textToTranslate,
-        source: 'auto', // Autodetectar el idioma de origen
-        target: 'es'   // Traducir siempre al español
+        text: request.params.text,
+        source: 'en',
+        target: 'es'
     }, function(result) {
-        console.log(result);
+        console.log(result); //
         response.send(result); // Enviar el resultado al navegador
     });
 });
-
+  // Ruta para servir el archivo index.html
+app.use(express.static(__dirname + "/Public/"));
+app.get('/', function(request, responce){
+    responce.sendFile(path.join(__dirname, 'index.html'));
+})
 
 /*app.get('/',   
     (req, res) => {
