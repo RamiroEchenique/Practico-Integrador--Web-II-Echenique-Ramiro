@@ -213,13 +213,38 @@ function renderObjetos(objetos) {
         card.className = 'card';
         card.innerHTML = `
             <img src="${imagenMuseo}" alt="${obj.title}" title="Fecha de creacion: ${obj.objectDate} ">
-            <h3>ID: ${obj.objectID}</h3>
-            <h3>Titulo: ${obj.title}</h3>
-            <h4>Cultura: ${obj.culture}</h3>
-            <h4>Dinastía: ${obj.dynasty}</h3>
-        `;  //<p>${obj.artistDisplayName}</p>
+            <h4>ID: ${obj.objectID}</h3>
+            <h5>Titulo: <span id="titulo-traducido${obj.objectID}">Sin datos</span></h3>
+            <h5>Cultura: <span id="cultura-traducida${obj.objectID}">Sin datos</span></h3>
+            <h5>Dinastía: <span id="dinastia-traducida${obj.objectID}">Sin datos</span></h3>
+        `;  
         div.appendChild(card);
-        // cierre del if
+       
+        // Fetch para traduccion del titulo
+        fetch(`/traducir/${encodeURIComponent(obj.title)}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById(`titulo-traducido${obj.objectID}`).innerText = data.translation;
+            })
+            .catch(error => console.error('Error:', error));
+
+        // Fetch para traduccion de la cultura
+        fetch(`/traducir/${encodeURIComponent(obj.culture)}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById(`cultura-traducida${obj.objectID}`).innerText = data.translation;
+            })
+            .catch(error => console.error('Error:', error));
+            
+            // Fetch para traduccion de la dinastia
+        fetch(`/traducir/${encodeURIComponent(obj.dynasty)}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById(`dinastia-traducida${obj.objectID}`).innerText = data.translation;
+        })
+        .catch(error => console.error('Error:', error)); 
+
+           
     });
 }
 //--------------------------------------------------------------------------------------
