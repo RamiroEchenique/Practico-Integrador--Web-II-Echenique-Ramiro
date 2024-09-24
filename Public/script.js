@@ -217,7 +217,9 @@ function renderObjetos(objetos) {
             <h4>Titulo: <span id="titulo-traducido${obj.objectID}">Sin datos</span></h4>
             <h4>Dinastía: <span id="dinastia-traducida${obj.objectID}">sin datos</span></h4>   
             <h4>Cultura: <span id="cultura-traducida${obj.objectID}">sin datos</span></h4>
-        `;  //<p>${obj.artistDisplayName}</p>
+            ${obj.additionalImages && obj.additionalImages.length > 0 ?
+                 `<button onclick="window.location.href='Public/verImagenesAdicionales.html?objectID=${obj.objectID}'">Ver Imágenes Adicionales</button>` : ''}
+        `;  
         div.appendChild(card);
         
         // Fetch para traduccion del titulo

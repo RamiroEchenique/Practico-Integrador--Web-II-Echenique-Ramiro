@@ -33,6 +33,11 @@ app.get('/', function(request, responce){
     responce.sendFile(path.join(__dirname, 'index.html'));
 })
 
+// Ruta para servir verImagenesAdicionales.html
+app.get('/verImagenesAdicionales.html', function(request, response) {
+    response.sendFile(path.join(__dirname, 'Public', 'verImagenesAdicionales.html'));
+});
+
 /*app.get('/',   
     (req, res) => {
      res.sendFile(path.join(__dirname, 'public', 'index.html'));
