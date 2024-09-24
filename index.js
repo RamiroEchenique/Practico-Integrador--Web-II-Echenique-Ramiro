@@ -1,5 +1,4 @@
 const express    = require('express');
-<<<<<<< Updated upstream
 //const http       = require("node:http");
 const translate = require('node-google-translate-skidz');//importar libreria para traducir
 const path       = require('path');
@@ -9,18 +8,11 @@ const port       = process.env.PORT || 3000;
 //middlewares 
 app.use(express.static('Public/'));
 app.use(express.json());//para leer json
-=======
-const app        = express();
-const port       = 3000;
-
-app.use(express.static('public'));
->>>>>>> Stashed changes
 
 /*app.get('/', (req, res) => {
     res.send('Hola desde mi servidor express en Google Drive');
 });*/
 
-<<<<<<< Updated upstream
 // Ruta para  la traducción
 app.get('/traducir', function(request, response) {
     
@@ -49,8 +41,6 @@ app.get('/', function(request, responce){
    });*/
 
    // Inicia el servidor
-=======
->>>>>>> Stashed changes
 app.listen(port, () => {
     console.log(`Servidor express en Google Drive escuchando en el puerto ${port}`);
 });
