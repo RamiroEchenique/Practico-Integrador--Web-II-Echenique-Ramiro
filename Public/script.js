@@ -215,10 +215,18 @@ function renderObjetos(objetos) {
             <img src="${imagenMuseo}" alt="${obj.title}" title="Fecha de creacion: ${obj.objectDate} ">
             <h3>ID: ${obj.objectID}</h3>
             <h3>Titulo: ${obj.title}</h3>
-            <h4>Cultura: ${obj.culture}</h3>
-            <h4>Dinastía: ${obj.dynasty}</h3>
+            <h4>Titulo Traducido: <span id="traducido-titulo-${obj.objectID}">Traduciendo...</span></h4>
+            <h4>Cultura: ${obj.culture}</h4>
+            <h4>Dinastía: ${obj.dynasty}</h4>
         `;  //<p>${obj.artistDisplayName}</p>
         div.appendChild(card);
+        // Fetch translation for title
+        fetch(`/traducir/${encodeURIComponent(obj.title)}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById(`traducido-titulo-${obj.objectID}`).innerText = data.translation;
+            })
+            .catch(error => console.error('Error:', error));
         // cierre del if
     });
 }

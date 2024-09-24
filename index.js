@@ -15,10 +15,10 @@ app.use(express.json());//para leer json
 
 // Ruta para  la traducción
 app.get('/traducir/:text', function(request, response) {
-    const textToTranslate = request.params.text;
+    const textoAtraducir = request.params.text;
     
     translate({
-        text: textToTranslate,
+        text: textoAtraducir,
         source: 'auto', // Autodetectar el idioma de origen
         target: 'es'   // Traducir siempre al español
     }, function(result) {
