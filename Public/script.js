@@ -214,36 +214,43 @@ function renderObjetos(objetos) {
         card.innerHTML = `
             <img src="${imagenMuseo}" alt="${obj.title}" title="Fecha de creacion: ${obj.objectDate} ">
             <h3>ID: ${obj.objectID}</h3>
-            <h4>Titulo Traducido: <span id="titulo-traducido${obj.objectID}">Traduciendo...</span></h4>
-            <h4>Dinastía Traducida: <span id="dinastia-traducida${obj.objectID}">Traduciendo...</span></h4>   
-            <h4>Cultura Traducida: <span id="cultura-traducida${obj.objectID}">Traduciendo...</span></h4>
+            <h4>Titulo: <span id="titulo-traducido${obj.objectID}">Sin datos</span></h4>
+            <h4>Dinastía: <span id="dinastia-traducida${obj.objectID}">sin datos</span></h4>   
+            <h4>Cultura: <span id="cultura-traducida${obj.objectID}">sin datos</span></h4>
         `;  //<p>${obj.artistDisplayName}</p>
         div.appendChild(card);
         
         // Fetch para traduccion del titulo
+        if (obj.title != ""){
         fetch(`/traducir/${encodeURIComponent(obj.title)}`)
             .then(response => response.json())
             .then(data => {
                 document.getElementById(`titulo-traducido${obj.objectID}`).innerText = data.translation;
             })
             .catch(error => console.error('Error:', error));
+        }
 
         // Fetch para traduccion de la dinastia
-        fetch(`/traducir/${encodeURIComponent(obj.dynasty)}`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById(`dinastia-traducida${obj.objectID}`).innerText = data.translation;
-        })
-        .catch(error => console.error('Error:', error));
-        
-        // Fetch para traduccion de cultura
-        fetch(`/traducir/${encodeURIComponent(obj.culture)}`)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById(`cultura-traducida${obj.objectID}`).innerText = data.translation;
-        })
-        .catch(error => console.error('Error:', error));
+        if (obj.dynasty != ""){
+            fetch(`/traducir/${encodeURIComponent(obj.dynasty)}`)
+            //fetch(`/traducir/${encodeURIComponent("how are you?")}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById(`dinastia-traducida${obj.objectID}`).innerText = data.translation;
+            })
+            .catch(error => console.error('Error:', error));
+        }
 
+        // Fetch para traduccion de cultura
+        if (obj.culture != ""){
+            fetch(`/traducir/${encodeURIComponent(obj.culture)}`)
+            //fetch(`/traducir/${encodeURIComponent("")}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById(`cultura-traducida${obj.objectID}`).innerText = data.translation;
+            })
+            .catch(error => console.error('Error:', error));
+        }
     });
 }
 //--------------------------------------------------------------------------------------
