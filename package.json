@@ -3,17 +3,26 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+<<<<<<< Updated upstream
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+    ,"start": "nodemon index.js"
+>>>>>>> Stashed changes
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+<<<<<<< Updated upstream
     "express": "^4.21.0",
     "node-google-translate-skidz": "^1.1.2",
     "path": "^0.12.7"
+=======
+    "express": "^4.21.0"
+>>>>>>> Stashed changes
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
