@@ -214,9 +214,9 @@ function renderObjetos(objetos) {
         card.innerHTML = `
             <img src="${imagenMuseo}" alt="${obj.title}" title="Fecha de creacion: ${obj.objectDate} ">
             <h3>ID: ${obj.objectID}</h3>
-            <h4>Titulo: <span id="titulo-traducido${obj.objectID}">Sin datos</span></h4>
-            <h4>Dinastía: <span id="dinastia-traducida${obj.objectID}">sin datos</span></h4>   
-            <h4>Cultura: <span id="cultura-traducida${obj.objectID}">sin datos</span></h4>
+            <h3><span id="titulo-traducido${obj.objectID}">No disponible</span></h3>
+            <h4>Dinastía: <span id="dinastia-traducida${obj.objectID}">No disponible</span></h4>   
+            <h4>Cultura: <span id="cultura-traducida${obj.objectID}">No disponible</span></h4>
             ${obj.additionalImages && obj.additionalImages.length > 0 ?
                  `<button onclick="window.location.href='imagenesAdicionales.html?objectID=${obj.objectID}'">Ver Imágenes Adicionales</button>` : ''}
         `;  

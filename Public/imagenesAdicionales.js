@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Error:', error));
     }
 
-//  evento al botón de volver
-/*document.getElementById('volver-btn').addEventListener('click', () => {
-    window.history.back();
-});*/
+    // Añade el evento al botón "Volver" , simula el comportamiento del boton "atras" del navegador
+    document.getElementById('boton-volver').addEventListener('click', () => {
+        history.back();
+    });
 
 });
 
