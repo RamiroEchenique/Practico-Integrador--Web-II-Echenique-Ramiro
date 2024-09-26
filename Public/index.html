@@ -6,11 +6,12 @@
     <title>TP integrador - Echenique Ramiro</title>
     <link rel="icon" href="Imagenes/METicon.png">
     <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <script src="script.js" defer></script>  <!-- defer para que se ejecute despues de cargar el html --> 
 </head>
 <body>
-    <div>
-        <h1>Museo</h1>
+    <div class="encabezado">
+        <h1>Galería de imágenes del Museo Metropolitano de NY </h1>
         <form id="formulario">
             <label for="Palabra">Palabra</label>
             <input type="text" id="PalabraAbuscar" name="PalabraAbuscar">
@@ -45,16 +46,12 @@
             <button id="botonBuscar">Buscar</button>
         </form>
     </div>
-    <!-- <div class="MostrarObras">
-        <button id="botonMostrarObras"> Mostrar Imagenes Museo </button>
-    </div> --> 
     
     <div id="obras" class="grid-container"></div>
     
     <div id="paginacion"></div>
 
     
-
     <footer>
         <div>
           <p>Creado por Ramiro Echenique:</p>

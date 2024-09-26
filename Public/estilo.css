@@ -7,6 +7,44 @@ body{
     margin: 20px;
 }
 
+/* estilo para imagen de fondo*/
+.encabezado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    background-image: url('Imagenes/museo.jpg');
+    background-size: cover; /* Asegura que la imagen cubra toda la sección */
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    color: rgb(233, 227, 227);
+    height: 40vh; /* Asegura que la sección ocupe toda la altura de la ventana */
+    text-align: center; /* Centra el texto */
+    font-family: 'Open Sans', sans-serif;
+}
+
+.encabezado h1 {
+    margin: 0;
+    padding: 10px;
+    font-size: 2.5em;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    color: white;
+}
+
+#formulario {
+    display: flex;
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+/*Fin de estilo para imagen de fondo*/
+
+
 #formulario{
     width: 70%;
     margin: 0 auto;
