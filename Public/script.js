@@ -195,7 +195,7 @@ function renderObjetos(objetos) {
         card.className = 'card';
         card.innerHTML = `
             <img src="${imagenMuseo}" alt="${obj.title}" title="Fecha de creacion: ${obj.objectDate} ">
-            <h3>ID: ${obj.objectID}</h3>
+            <!--<h3>ID: ${obj.objectID}</h3> -->
             <h3 class="titulo-tarjeta"><span id="titulo-traducido${obj.objectID}">No disponible</span></h3>
             <h4 class="dinastia-cultura">Dinastía: <span id="dinastia-traducida${obj.objectID}">No disponible</span></h4>   
             <h4 class="dinastia-cultura">Cultura: <span id="cultura-traducida${obj.objectID}">No disponible</span></h4>

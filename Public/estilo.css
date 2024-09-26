@@ -70,7 +70,7 @@ body{
     border-radius: 8px;
 }
 .titulo-tarjeta {
-    font-size: 1.2em; /* Tamaño más grande para el título */
+    font-size: 1 em; /* Tamaño más grande para el título */
     font-weight: bold; /* Negrita para resaltar */
     margin-top: 5px;
     /*margin-bottom: 5px; /* Menor margen inferior */
