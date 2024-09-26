@@ -29,6 +29,17 @@ function llenarSelectDepartamentos() {
             option.value = departamento.departmentId;
             option.textContent = departamento.displayName;
             select.appendChild(option); //Este método agrega la etiqueta <option> recién creada como hijo del elemento <select>
+        
+            // Fetch para traducción del nombre del departamento
+            //console.log("departamento: ",departamento.displayName);
+            fetch(`/traducir/${encodeURIComponent(departamento.displayName)}`)
+            .then(response => response.json())
+            .then(traduccionData => {
+                option.textContent = traduccionData.translation;
+                //console.log("traduccionData: ",traduccionData.translation);
+            })
+            .catch(error => console.error('Error:', error));
+        
         }); 
     })
 
@@ -56,12 +67,12 @@ function BuscaryPintar(){
         }
 
         //--------para ubicacion------------------------------------------------
-        console.log("ubi: ", ubicacion.value);
+        //console.log("ubi: ", ubicacion.value);
         let ubi = "";
         if (ubicacion.value && ubicacion.value !== "0") {
-            const selectedOption = ubicacion.options[ubicacion.selectedIndex];
-            ubi = `&geoLocation=${selectedOption.text}`;
-            console.log("ubi: ", ubi);
+            const selectedOption = ubicacion.value;
+            console.log("ubicacion seleccionada: ", selectedOption);
+            ubi = `&geoLocation=${selectedOption}`;
         }
 
         //--------para departamentos--------------------------------------------
