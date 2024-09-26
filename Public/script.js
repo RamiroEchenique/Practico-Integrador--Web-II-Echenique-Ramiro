@@ -5,9 +5,7 @@ const palabraClave=document.getElementById('PalabraAbuscar');
 const ubicacion=document.getElementById('ubicacion');
 const div = document.getElementById('obras');
 
-
 const sitioBase = 'https://collectionapi.metmuseum.org/public/collection/v1/';
-
 
 //-------------------------Llenar con los departamentos el select -------------------------------------
 llenarSelectDepartamentos();
@@ -24,6 +22,7 @@ function llenarSelectDepartamentos() {
         const option = document.createElement('option');
         option.value=0; option.textContent="Todos"
         select.appendChild(option); //agrega la opcion por defecto "todos"
+
         data.departments.forEach(departamento => {
             const option = document.createElement('option');
             //console.log("optionA: ",option);
@@ -50,13 +49,13 @@ function BuscaryPintar(){
     //botonBuscar.addEventListener('click', (event) => {
         //console.log('click buscar');
         // event.preventDefault(); // Evita que el formulario se envíe
-        //--------para palabra a buscar-------
+        //--------para palabra a buscar----------------------------------------
         let termino = palabraClave.value;
         if (!palabraClave.value) {
             termino = "*";
         }
 
-        //--------para ubicacion-------------
+        //--------para ubicacion------------------------------------------------
         console.log("ubi: ", ubicacion.value);
         let ubi = "";
         if (ubicacion.value && ubicacion.value !== "0") {
@@ -65,7 +64,7 @@ function BuscaryPintar(){
             console.log("ubi: ", ubi);
         }
 
-        //--------para departamentos----------
+        //--------para departamentos--------------------------------------------
         let dpto = "";
         if (departamentos.value && departamentos.value !== "0") {
             dpto = `&departmentId=${departamentos.value}`;
@@ -113,25 +112,8 @@ function BuscaryPintar(){
             }
             })
             .catch(error => console.error('Error:', error));
-            
-    //});
-
 }
-// paginacion sin limite
-/*function renderPaginas(totalPaginas) {
-    const paginacionDiv = document.getElementById('paginacion');
-    paginacionDiv.innerHTML = '';//limpio el div de paginacion
 
-    for (let i = 1; i <= totalPaginas; i++) {
-        const BotonPagina = document.createElement('button');
-        BotonPagina.textContent = i;
-        BotonPagina.addEventListener('click', () => {
-            paginaActual = i;
-            BuscaryPintar();
-        });
-        paginacionDiv.appendChild(BotonPagina);
-    }
-}*/
 
 // paginacion con limite
 const maxBotonesPaginacion = 10;
@@ -179,8 +161,8 @@ function renderPaginas(totalPaginas) {
 }
 
 
-//----------------- Mostrar todos los objetos sin busqueda---------------------------------
-//boton.addEventListener('click', () => {
+//----------------- Mostrar objetos al inicio ---------------------------------
+
     console.log('click mostrar todo')
     //fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11&hasImages=true')
     //fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=11')
@@ -188,14 +170,14 @@ function renderPaginas(totalPaginas) {
         .then(response => response.json())
         .then(data => {
             console.log("data: ",data);
-            const objectIDs = data.objectIDs.slice(37, 57); // Obtener los primeros 20 IDs
+            const objectIDs = data.objectIDs.slice(114201, 114209); // muestra al azar 
             console.log("objectIDs: ",objectIDs); 
             const promises = objectIDs.map(id => fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`).then(res => res.json()));
             return Promise.all(promises);
         })
         .then(objects => renderObjetos(objects))
-        //.catch(error => console.error('Error:', error));
-//});
+        .catch(error => console.error('Error:', error));
+
 
 //-------------------Render Objetos ------------------------------------------------
 function renderObjetos(objetos) {
@@ -214,11 +196,11 @@ function renderObjetos(objetos) {
         card.innerHTML = `
             <img src="${imagenMuseo}" alt="${obj.title}" title="Fecha de creacion: ${obj.objectDate} ">
             <h3>ID: ${obj.objectID}</h3>
-            <h3><span id="titulo-traducido${obj.objectID}">No disponible</span></h3>
-            <h4>Dinastía: <span id="dinastia-traducida${obj.objectID}">No disponible</span></h4>   
-            <h4>Cultura: <span id="cultura-traducida${obj.objectID}">No disponible</span></h4>
+            <h3 class="titulo-tarjeta"><span id="titulo-traducido${obj.objectID}">No disponible</span></h3>
+            <h4 class="dinastia-cultura">Dinastía: <span id="dinastia-traducida${obj.objectID}">No disponible</span></h4>   
+            <h4 class="dinastia-cultura">Cultura: <span id="cultura-traducida${obj.objectID}">No disponible</span></h4>
             ${obj.additionalImages && obj.additionalImages.length > 0 ?
-                 `<button onclick="window.location.href='imagenesAdicionales.html?objectID=${obj.objectID}'">Ver Imágenes Adicionales</button>` : ''}
+                 `<button class="boton-tarjeta" onclick="window.location.href='imagenesAdicionales.html?objectID=${obj.objectID}'">Ver más imágenes</button>` : ''}
         `;  
         div.appendChild(card);
         
@@ -246,7 +228,6 @@ function renderObjetos(objetos) {
         // Fetch para traduccion de cultura
         if (obj.culture != ""){
             fetch(`/traducir/${encodeURIComponent(obj.culture)}`)
-            //fetch(`/traducir/${encodeURIComponent("")}`)
             .then(response => response.json())
             .then(data => {
                 document.getElementById(`cultura-traducida${obj.objectID}`).innerText = data.translation;

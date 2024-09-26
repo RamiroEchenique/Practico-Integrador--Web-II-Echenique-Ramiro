@@ -1,6 +1,7 @@
 body{
     background-color: darkgrey;
     margin: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .MostrarObras{
@@ -21,7 +22,7 @@ body{
     color: rgb(233, 227, 227);
     height: 40vh; /* Asegura que la sección ocupe toda la altura de la ventana */
     text-align: center; /* Centra el texto */
-    font-family: 'Open Sans', sans-serif;
+    
 }
 
 .encabezado h1 {
@@ -37,47 +38,74 @@ body{
     display: flex;
     width: 100%;
     max-width: 700px;
-    padding: 20px;
+    padding: 15px 170px 15px 15px;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
 }
 
-/*Fin de estilo para imagen de fondo*/
-
-
-#formulario{
-    width: 70%;
-    margin: 0 auto;
-}
 .grid-container {
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    align-items: stretch; /* Asegura que todas las tarjetas tengan la misma altura */
 }
+
 .card {
-    background-color: cornflowerblue;
-    border: 1px solid #fccccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #d8e2dc; /* Azul claro */
+    border: 1px solid #b0c4de; /* Azul más oscuro */
     border-radius: 8px;
     padding: 10px;
     text-align: center;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
-    /*width: 200px;   /* Ancho fijo */
-    /*height: 300px;  /* Alto fijo */ 
 }
+
 .card img {
     max-width: 100%;
-    /*width: 100%;*/
-    height: auto;/**/
-    object-fit: cover; /* Ajusta la imagen para cubrir el area de la tarjeta*/
+    height: auto;
+    object-fit: cover; /* Ajusta la imagen para cubrir el área de la tarjeta */
     border-radius: 8px;
-    
 }
+.titulo-tarjeta {
+    font-size: 1.2em; /* Tamaño más grande para el título */
+    font-weight: bold; /* Negrita para resaltar */
+    margin-top: 5px;
+    /*margin-bottom: 5px; /* Menor margen inferior */
+}
+
+.dinastia-cultura {
+    color: gray;
+    font-size: 0.8em; /* Tamaño más pequeño */
+    margin-top: 10px;
+    /*margin-bottom: 3px; /* Menor margen inferior */
+}
+
+.boton-tarjeta {
+    font-size: 0.6em; /* Tamaño más pequeño */
+    padding: 5px 5px; /* Relleno */
+    text-align: center; /* Centrar texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Mostrar como bloque en línea */
+    font-size: 1em; /* Tamaño de fuente */
+    margin-top: 10px; /* Margen superior */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.boton-tarjeta:hover {
+    background-color: #599c5c; /* Color de fondo al pasar el ratón */
+}
+
 /*------------- Estilo para la paginacion ---------------- */
 #paginacion {
     display: flex;
+    justify-content: center;
     flex-wrap: nowrap;
     overflow-x: auto;
+    padding-top: 10px;
 }
 
 #paginacion button {
