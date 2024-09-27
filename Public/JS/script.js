@@ -57,6 +57,12 @@ botonBuscar.addEventListener('click', (event) => {
 });
 
 function BuscaryPintar(){
+        // Mostrar el mensaje de "buscando..."
+        const mensajeBuscando = document.getElementById('mensajeBuscando');
+        const mensajeSinResultados = document.getElementById('mensajeSinResultados');
+        mensajeBuscando.style.display = 'block';
+        mensajeSinResultados.style.display = 'none';
+        
         //--------para palabra a buscar----------------------------------------
         let termino = palabraClave.value;
         if (!palabraClave.value) {
@@ -91,6 +97,7 @@ function BuscaryPintar(){
             url += dpto;
         }
         console.log('URL:', url);
+        
 
         //---------------------------------fin -----------
     
@@ -98,6 +105,7 @@ function BuscaryPintar(){
             .then(response => response.json())
             .then(data => {
                 if (data.objectIDs) {               //console.log("data.objectIDs: ", data.objectIDs); 
+                    mensajeBuscando.style.display = 'none'; // Oculta el mensaje de "buscando..."
                     const totalItems = data.total; //console.log("totalItems: ", totalItems);
                     const totalPaginas = Math.ceil(totalItems / ItemsPorPagina); //console.log("totalPages: ", totalPages);// Math.ceil redondea hacia arriba
                     const inicio = (paginaActual - 1) * ItemsPorPagina;
@@ -117,6 +125,8 @@ function BuscaryPintar(){
                     .catch(error => console.error('Error:', error));
                 }else{
                     console.log("no hay objetos");
+                    mensajeBuscando.style.display = 'none'; // Oculta el mensaje de "buscando..."
+                    mensajeSinResultados.style.display = 'block'; // Muestra el mensaje de "sin resultados"
             }
             })
             .catch(error => console.error('Error:', error));

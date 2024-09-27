@@ -14,7 +14,6 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-between; /* Distribuye el espacio entre los elementos */
-    /*background-image: url('/Public/Imagenes/museo.jpg');*/
     background-image: url('museo.jpg');
     background-size: cover; /* Asegura que la imagen cubra toda la sección */
     background-position: center;
@@ -43,6 +42,27 @@ body{
     background: rgba(0, 0, 0, 0.7);
     border-radius: 10px;
 }
+/* Buscando y busqueda sin resultados */
+
+.mensaje {
+    display: none;
+    font-size: 1.2em;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#mensajeBuscando {
+    color: rgb(63, 63, 255);
+    background-color: #e0f7fa;
+}
+
+#mensajeSinResultados {
+    color: red;
+    background-color: #ffebee;
+}
+/*---------------------------------*/
 
 .grid-container {
     margin-top: 20px;
