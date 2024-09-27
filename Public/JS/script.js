@@ -57,9 +57,6 @@ botonBuscar.addEventListener('click', (event) => {
 });
 
 function BuscaryPintar(){
-    //botonBuscar.addEventListener('click', (event) => {
-        //console.log('click buscar');
-        // event.preventDefault(); // Evita que el formulario se envíe
         //--------para palabra a buscar----------------------------------------
         let termino = palabraClave.value;
         if (!palabraClave.value) {
@@ -110,16 +107,16 @@ function BuscaryPintar(){
                     const promises = dataId.map(id => 
                     fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`)
                         .then(res => res.json())
-                );
+                    );
     
-                Promise.all(promises)
-                    .then(objects => {
-                        renderObjetos(objects)
-                        renderPaginas(totalPaginas)
+                    Promise.all(promises)
+                        .then(objects => {
+                            renderObjetos(objects)
+                            renderPaginas(totalPaginas)
                     })
                     .catch(error => console.error('Error:', error));
-            }else{
-                console.log("no hay objetos");
+                }else{
+                    console.log("no hay objetos");
             }
             })
             .catch(error => console.error('Error:', error));

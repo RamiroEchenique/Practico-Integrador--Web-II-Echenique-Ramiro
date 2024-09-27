@@ -9,9 +9,6 @@ const port       = process.env.PORT || 3000;
 app.use(express.static('Public/'));
 app.use(express.json());//para leer json
 
-/*app.get('/', (req, res) => {
-    res.send('Hola desde mi servidor express en Google Drive');
-});*/
 
 // Ruta para  la traducción
 app.get('/traducir/:text', function(request, response) {
@@ -41,13 +38,7 @@ app.get('/', function(request, responce){
 })
 
 
-
-/*app.get('/',   
-    (req, res) => {
-     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-   });*/
-
    // Inicia el servidor
 app.listen(port, () => {
-    console.log(`Servidor express en Google Drive escuchando en el puerto ${port}`);
+    console.log(`Servidor express escuchando en el puerto ${port}`);
 });

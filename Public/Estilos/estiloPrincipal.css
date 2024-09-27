@@ -14,7 +14,8 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-between; /* Distribuye el espacio entre los elementos */
-    background-image: url('Imagenes/museo.jpg');
+    /*background-image: url('/Public/Imagenes/museo.jpg');*/
+    background-image: url('museo.jpg');
     background-size: cover; /* Asegura que la imagen cubra toda la sección */
     background-position: center;
     background-repeat: no-repeat;
@@ -22,8 +23,8 @@ body{
     color: rgb(233, 227, 227);
     height: 40vh; /* Asegura que la sección ocupe toda la altura de la ventana */
     text-align: center; /* Centra el texto */
-    
 }
+
 
 .encabezado h1 {
     margin: 0;
