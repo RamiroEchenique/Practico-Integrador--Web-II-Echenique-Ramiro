@@ -1,5 +1,4 @@
 const express    = require('express');
-//const http       = require("node:http");
 const translate = require('node-google-translate-skidz');//importar libreria para traducir
 const path       = require('path');
 const app        = express();

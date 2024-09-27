@@ -17,7 +17,6 @@ function llenarSelectDepartamentos() {
     .then (data=>{
         console.log("DataDepartamentos",data);
         //console.log("DataDepartamentos",data.department);  
-
         const select = document.getElementById('departamentos');// para obtener el elemento <select> donde se agregarán las opciones
         const option = document.createElement('option');
         option.value=0; option.textContent="Todos"
@@ -31,14 +30,13 @@ function llenarSelectDepartamentos() {
             select.appendChild(option); //Este método agrega la etiqueta <option> recién creada como hijo del elemento <select>
         
             // Fetch para traducción del nombre del departamento
-            //console.log("departamento: ",departamento.displayName);
             fetch(`/traducir/${encodeURIComponent(departamento.displayName)}`)
             .then(response => response.json())
             .then(traduccionData => {
                 option.textContent = traduccionData.translation;
                 //console.log("traduccionData: ",traduccionData.translation);
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error en la traducción del departamento:', error));
         
         }); 
     })
@@ -89,11 +87,9 @@ function BuscaryPintar(){
         let url = `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${termino}`;
 
         if (ubi) { // se evalua como verdadero sino es un cadena vacia como ""
-            console.log('if ubi', ubi);
             url += ubi;
         }
         if (dpto) { // se evalua como verdadero sino es un cadena vacia como ""
-            console.log('if dpto: ', dpto);
             url += dpto;
         }
         console.log('URL:', url);
@@ -229,7 +225,7 @@ function renderObjetos(objetos) {
             .then(data => {
                 document.getElementById(`titulo-traducido${obj.objectID}`).innerText = data.translation;
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error en la traducción del titulo:', error));
         }
 
         // Fetch para traduccion de la dinastia
@@ -240,7 +236,7 @@ function renderObjetos(objetos) {
             .then(data => {
                 document.getElementById(`dinastia-traducida${obj.objectID}`).innerText = data.translation;
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error en la traducción de la dinastia:', error));
         }
 
         // Fetch para traduccion de cultura
@@ -250,7 +246,7 @@ function renderObjetos(objetos) {
             .then(data => {
                 document.getElementById(`cultura-traducida${obj.objectID}`).innerText = data.translation;
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error en la traducción de la cultura:', error));
         }
     });
 }

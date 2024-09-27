@@ -4,36 +4,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (objectID) {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
-                // Actualiza el título y los datos del objeto
                 document.getElementById('datos-obra').innerText = `Fecha de creación: ${data.objectDate || 'No disponible'} | Cultura: ${data.culture || 'No disponible'}`;
-                
+
                 // Fetch para traducción del título
-                fetch(`/traducir/${encodeURIComponent(data.title)}`)
-                .then(response => response.json())
-                .then(traduccionData => {
-                    document.getElementById('titulo-obra').innerText = traduccionData.translation || 'Título no disponible';
-                })
-                .catch(error => console.error('Error:', error));
+                if (data.title) {
+                    fetch(`/traducir/${encodeURIComponent(data.title)}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(traduccionData => {
+                            document.getElementById('titulo-obra').innerText = traduccionData.translation || 'Título no disponible';
+                        })
+                        .catch(error => console.error('Error en la traducción del título:', error));
+                }
 
                 // Fetch para traducción de la cultura
-                fetch(`/traducir/${encodeURIComponent(data.culture)}`)
-                .then(response => response.json())
-                .then(traduccionData => {
-                    const datosObra = document.getElementById('datos-obra');
-                    datosObra.innerText = datosObra.innerText.replace(data.culture, traduccionData.translation || 'Cultura no disponible');
-                })
-                .catch(error => console.error('Error:', error));
+                if (data.culture) {
+                    fetch(`/traducir/${encodeURIComponent(data.culture)}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Falla en la respuesta de la red ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(traduccionData => {
+                            const datosObra = document.getElementById('datos-obra');
+                            datosObra.innerText = datosObra.innerText.replace(data.culture, traduccionData.translation || 'Cultura no disponible');
+                        })
+                        .catch(error => console.error('Error en la traducción de la cultura:', error));
+                }
 
                 // Fetch para traducción de la fecha
-                fetch(`/traducir/${encodeURIComponent(data.objectDate)}`)
-                .then(response => response.json())
-                .then(traduccionData => {
-                    const datosObra = document.getElementById('datos-obra');
-                    datosObra.innerText = datosObra.innerText.replace(data.objectDate, traduccionData.translation || 'Fecha no disponible');
-                })
-                .catch(error => console.error('Error:', error));
+                if (data.objectDate) {
+                    fetch(`/traducir/${encodeURIComponent(data.objectDate)}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(traduccionData => {
+                            const datosObra = document.getElementById('datos-obra');
+                            datosObra.innerText = datosObra.innerText.replace(data.objectDate, traduccionData.translation || 'Fecha no disponible');
+                        })
+                        .catch(error => console.error('Error en la traducción de la fecha:', error));
+                }
 
                 // Carga las imágenes adicionales
                 const imagenesAdicionalesDiv = document.getElementById('imagenes-adicionales');
@@ -45,12 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     imagenesAdicionalesDiv.appendChild(img);
                 });
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.error('Error en la obtención de datos del objeto:', error));
     }
 
-    // Añade el evento al botón "Volver"
     document.getElementById('boton-volver').addEventListener('click', () => {
         history.back();
     });
 });
-
